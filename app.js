@@ -1,4 +1,4 @@
-const User = require("./user");
+const { User, accessLevel } = require("./user");
 const Validator = require("./validator");
 
 class App {
@@ -14,13 +14,29 @@ class App {
 
   createUser(name, surname, birthDay, password, gender, email) {
     this.users.push(
-      new User(name, surname, birthDay, password, gender, email, "user")
+      new User(
+        name,
+        surname,
+        birthDay,
+        password,
+        gender,
+        email,
+        accessLevel.user
+      )
     );
   }
 
   createAdmin(name, surname, birthDay, password, gender, email) {
     this.users.push(
-      new User(name, surname, birthDay, password, gender, email, "admin")
+      new User(
+        name,
+        surname,
+        birthDay,
+        password,
+        gender,
+        email,
+        accessLevel.admin
+      )
     );
   }
 
@@ -34,7 +50,7 @@ class App {
   }
 
   throwIfNotAdmin(value) {
-    if (value.accessLevel !== "admin") {
+    if (value.accessLevel !== accessLevel.admin) {
       throw new Error("You don't have admin permissions");
     }
   }
