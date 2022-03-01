@@ -40,24 +40,17 @@ class App {
     );
   }
 
-  changeUserData(admin, user, dataToChange, valueOfNewData) {
+  changeUserData(admin, user, propertyToChange, valueOfNewData) {
     Validator.throwIfNotProperInstance(admin, User);
     Validator.throwIfNotProperInstance(user, User);
     this.throwIfNotAdmin(admin);
-    //ta logika powinna trafić do user
-    this.checkIfCanChangeProperty(user, dataToChange);
-    user[dataToChange] = valueOfNewData;
+    user.checkIfHaveProperty(propertyToChange);
+    user[propertyToChange] = valueOfNewData;
   }
 
   throwIfNotAdmin(value) {
     if (value.accessLevel !== accessLevel.admin) {
       throw new Error("You don't have admin permissions");
-    }
-  }
-
-  checkIfCanChangeProperty(obj, property) {
-    if (!Object.keys(obj).find((item) => item === `_${property}`)) {
-      throw new Error("You may change only existing properies");
     }
   }
 
