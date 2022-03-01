@@ -79,8 +79,17 @@ class User {
     return this._accessLevel;
   }
 
+  checkIfHaveProperty(propertyToFind) {
+    Validator.checkIfString(propertyToFind);
+    if (
+      !Object.keys(this).some((property) => property === `_${propertyToFind}`)
+    ) {
+      throw new Error("Such a property does not exist");
+    }
+  }
+
   checkIfProperAccessLevel(value) {
-    if (!Object.values(accessLevel).find((item) => item === value))
+    if (!Object.values(accessLevel).some((item) => item === value))
       throw new Error("entry level should be specified as: user or admin");
   }
 
