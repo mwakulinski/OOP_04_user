@@ -1,5 +1,5 @@
 const App = require("./app");
-const User = require("./user");
+const { User } = require("./user");
 
 const user1 = new User(
   "Michal",
@@ -39,7 +39,6 @@ app.createUser(
 );
 
 app.changeUserData(app.users[0], app.users[2], "password", "Kasia1234!");
+app.changeUserData(app.users[0], app.users[2], "name", "Arkadiusz");
+app.changeUserData(app.users[0], app.users[2], "gender", "male");
 console.log("app", app);
-
-const app1 = new App();
-console.log("app1 \n", app1);
