@@ -1,4 +1,5 @@
 const Validator = require("./validator");
+const accessLevel = { user: "user", admin: "admin" };
 
 class User {
   constructor(name, surname, birthDay, password, gender, email, accessLevel) {
@@ -79,8 +80,7 @@ class User {
   }
 
   checkIfProperAccessLevel(value) {
-    const accessLevel = ["user", "admin"];
-    if (!accessLevel.find((item) => item === value))
+    if (!Object.values(accessLevel).find((item) => item === value))
       throw new Error("entry level should be specified as: user or admin");
   }
 
@@ -110,4 +110,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = { User, accessLevel };
